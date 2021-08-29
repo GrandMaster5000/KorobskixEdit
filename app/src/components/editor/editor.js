@@ -15,12 +15,15 @@ export default class Editor extends Component {
         axios
         .get('./api')
         .then(res => this.setState({pageList: res.data}))
+        .catch(e => console.log(e));
+        console.log(this.state.pageList);
     }
 
-    createNewPage = () =>  {
+    createNewPage = () => {
         axios
-        .post(".api/createNewPage.php", {"name": this.newPageName})
-        .then(this.loadPageList());
+            .post("./api/createNewPage.php", {"name": this.state.newPageName})
+            .then(this.loadPageList())
+            .catch(() => alert("Страница уже существует!"));
     }
 
     render() {
