@@ -1,5 +1,5 @@
 <?php
-$htmlfiles = glob("../../*.html");
+$htmlfiles = glob("../*.html");
 $response = [];
 
 foreach ($htmlfiles as $file) {

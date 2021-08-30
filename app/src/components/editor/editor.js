@@ -16,7 +16,6 @@ export default class Editor extends Component {
         .get('./api')
         .then(res => this.setState({pageList: res.data}))
         .catch(e => console.log(e));
-        console.log(this.state.pageList);
     }
 
     createNewPage = () => {
@@ -26,11 +25,22 @@ export default class Editor extends Component {
             .catch(() => alert("Страница уже существует!"));
     }
 
+    deletePage = (page) => {
+        axios
+        .post('./api/deletePage.php', {"name": page})
+        .then(this.loadPageList())
+        .catch(() => alert("Страница не существует!"));
+    }
+
     render() {
         const {pageList, newPageName} = this.state;
         const pages = pageList.map(page => {
             return (
-                <h1 key={page}>{page}</h1>
+                <h1 key={page}>{page}
+                    <a 
+                    href='#'
+                    onClick={() => this.deletePage(page)}>(x)</a>
+                </h1>
             )
         })
         return (
