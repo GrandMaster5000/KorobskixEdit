@@ -2,7 +2,7 @@ const gulp = require("gulp");
 const webpack = require("webpack-stream");
 const sass = require("gulp-sass");
 
-const dist = "d:/OpenServer/domains/phpLearn";
+const dist = "d:/OpenServer/domains/phpLearn/admin";
 
 gulp.task("copy-html", () => {
     return gulp.src("./app/src/index.html")
